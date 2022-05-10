@@ -49,10 +49,7 @@ public class HomePage extends AbstractPage {
 
     public boolean isPizzaInCart(String pizza) {
         new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(cart));
-        List<WebElement> elements = driver.findElements(By.xpath(cartElementsLocator));
-        List<String> productCollect = elements.stream().map(s -> s.getText()).collect(Collectors.toList());
-
-        String pr = productCollect.toString();
+        String pr = cartElementsLocator.getText();
         return pr.contains(pizza);
     }
 }
