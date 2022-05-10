@@ -1,6 +1,5 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,8 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class HomePage extends AbstractPage {
     private final String BASE_URL = "https://papajohns.by/";
@@ -29,8 +26,8 @@ public class HomePage extends AbstractPage {
     @FindBy (xpath = "//header/descendant::button/span[text()='Да']")
     private WebElement buttonMinsk;
 
-    private String cartElementsLocator = "//figure/following-sibling::div";
-
+    @FindBy (xpath = "//figure/following-sibling::div")
+    private WebElement cartElementsLocator;
 
     @FindBy(xpath = "//div[@id='pizza__list']/descendant::node()[text()='Маргарита']/ancestor::node()/following-sibling::*/button")
     private WebElement buttonAdd;
@@ -39,10 +36,12 @@ public class HomePage extends AbstractPage {
     private WebElement cart;
 
     public HomePage clickMinsk() {
+        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(cart));
         buttonMinsk.click();
         return this;
     }
     public HomePage clickAddPizzaToCart() {
+        new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS)).until(ExpectedConditions.visibilityOf(cart));
         buttonAdd.click();
         return this;
     }

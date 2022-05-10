@@ -5,7 +5,7 @@ import pageobjects.HomePage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class papaTest extends AbstractTest {
+public class PapaTest extends AbstractTest {
     private final String pizza = "Маргарита";
 
     @Test
